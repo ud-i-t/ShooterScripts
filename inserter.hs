@@ -20,7 +20,7 @@ main :: IO ()
 main = do
     myFile <- openFile "stage1.txt" ReadMode
     hSetEncoding myFile utf8
-    cs <- TI.hGetLine myFile
+    cs <- TI.hGetContents myFile
     let first = hello cs
     TI.putStrLn first
     hClose myFile
