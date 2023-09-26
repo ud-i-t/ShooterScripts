@@ -21,8 +21,9 @@ main = do
     myFile <- openFile "stage1.txt" ReadMode
     hSetEncoding myFile utf8
     cs <- TI.hGetContents myFile
-    let first = hello cs
-    TI.putStrLn first
+    let commands = T.lines cs
+    let noComments = filter (\x -> (T.head x) /= '#') commands
+    TI.putStrLn (head noComments)
     hClose myFile
 
 -- フレームの数値が指定値以上の要素を抜き出す
