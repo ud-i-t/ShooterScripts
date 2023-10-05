@@ -24,6 +24,12 @@ main = do
     let commands = T.lines cs
     let noComments = filter (\x -> (T.head x) /= '#') commands
     TI.putStrLn (head noComments)
+
+    outFile <- openFile "out.txt" WriteMode
+    hSetEncoding outFile utf8
+    TI.hPutStr outFile (T.unlines noComments)
+
+    hClose outFile
     hClose myFile
 
 -- フレームの数値が指定値以上の要素を抜き出す
